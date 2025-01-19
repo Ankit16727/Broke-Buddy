@@ -3,9 +3,11 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Alert } from 'react-bootstrap';
 import { authenticateUser } from "@/lib/authenticate";
+import { useRouter } from 'next/router';
 
 export default function LogIn() {
 
+    const router = useRouter()
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const [warning, setWarning] = useState("");
@@ -14,6 +16,7 @@ export default function LogIn() {
         console.log("It is good")
         try{
           await authenticateUser(user, password);
+          router.push("/setbudget")
         }catch(err){
          setWarning(err.message);
         }
