@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 export default function SetBudget() {
@@ -6,7 +7,7 @@ export default function SetBudget() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [warning, setWarning] = useState("");
-
+    const router = useRouter()
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -22,6 +23,8 @@ export default function SetBudget() {
     // Submit the form data
     console.log({ category, budget, startDate, endDate });
     alert("Budget has been set successfully!");
+    router.push("/analysis")
+
   }
 
   return (
